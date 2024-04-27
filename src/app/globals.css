@@ -39,3 +39,55 @@ body {
 h1 {
   font-family: var(--font-angkor);
 }
+
+/* CSS */
+@keyframes shake {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-5px) rotate(-3deg); }
+  50% { transform: translateX(5px) rotate(3deg); }
+  75% { transform: translateX(-5px) rotate(-3deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+.shake-on-hover:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+.dots {
+  width: 100%;
+  background-image: radial-gradient(#d9d9d9 1px, transparent 0);
+  background-size: 15px 15px;
+}
+
+.lines {
+  background-image: linear-gradient(to bottom, #d9d9d9 1px, white 1px);
+  background-size: 25px 25px;
+}
+
+.empty {
+  background: transparent;
+}
+
+/* React calendar */
+.react-calendar {
+  border-radius: 6px;
+  border-color: rgb(238 242 255);
+  background-color: rgb(238 242 255);
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus,
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {
+  color: #0a0a0a;
+  background-color: rgb(224 231 255);
+
+}
+
+.react-calendar__tile--active,.react-calendar__tile--hasActive {
+  background-color: rgb(129 140 248);
+}
+
+.react-calendar__tile--now {
+  color: #FFF;
+  background-color: rgb(219 39 119);
+}

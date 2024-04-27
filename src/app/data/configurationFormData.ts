@@ -19,12 +19,14 @@ export const themeFields = [
     id: "classic",
     name: "theme",
     value: "classic",
+    example: 'themeExampleClassic'
   },
   {
     title: "Minimalism",
     id: "minimalism",
     name: "theme",
     value: "minimalism",
+    example: "themeExampleMinimalism"
   }
 ]
 
@@ -34,18 +36,21 @@ export const canvasFields = [
     id: "lines",
     name: "canvas",
     value: "lines",
+    example: "canvasExampleLines"
   },
   {
     title: "Dots",
     id: "dots",
     name: "canvas",
-    value: "dots"
+    value: "dots",
+    example: "canvasExampleDots"
   },
   {
-    title: "Empty",
-    id: "empty",
+    title: "Blank",
+    id: "blank",
     name: "canvas",
-    value: "empty"
+    value: "blank",
+    example: "canvasExampleBlank"
   }
 ]
 

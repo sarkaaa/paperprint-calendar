@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { angkor } from "./utils/fonts";
 
 export const metadata: Metadata = {
   title: "Paperprint calendear",
@@ -14,13 +13,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log('aaa: ', angkor)
   return (
     <html lang="en">
       <body>
         {children}
-        <footer>
-          Made with ❤️ by{" "}<a href="https://pandacode.cz" target="_blank">Šárka Chwastková</a>
+        <footer className="bg-slate-200 py-4 text-center">
+          Made with ❤️ by{" "}<a href="https://pandacode.cz" target="_blank" className="font-semibold hover:text-pink-700 focus:text-pink-700">Šárka Chwastková</a>
         </footer>
       </body>
     </html>
