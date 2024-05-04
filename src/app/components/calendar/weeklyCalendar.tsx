@@ -58,8 +58,8 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
   let weekDays: number[] = fillWeekdays(calendar || defaultWeekDayNumbers(), []);
 
   return (
-    <div className="bg-white overflow-x-scroll w-auto justify-stretch p-4 min-h-svh h-auto flex relative flex-col">
-      <div className="bg-white flex justify-between px-2 py-8 items-end">
+    <div className="relative flex size-auto min-h-svh flex-col justify-stretch overflow-x-scroll bg-white p-4">
+      <div className="flex items-end justify-between bg-white px-2 py-8">
         <div>
           <span className={classNames(`text-4xl font-semibold mr-4 uppercase tracking-wider ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`, {
             'text-black': calendarSetup.color === 'blackAndWhite',
@@ -68,14 +68,14 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
             'text-green-700': calendarSetup.color === 'green'
           
           })}>{MONTHS[calendar.month]}</span>
-          <span className={`text-gray-400 text-4xl font-semibold ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}>{calendar.year}</span>
+          <span className={`text-4xl font-semibold text-gray-400 ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}>{calendar.year}</span>
         </div>
         <div className="flex flex-col items-end">
           <span className={`text-3xl font-semibold ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className} ${colorScheme({ color: calendarSetup.color, style: 'text'})}`}>{calendar.weekNumber}</span>
-          <span className={`text-gray-400 text-xs uppercase font-semilight ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}>week number</span>
+          <span className={`text-xs font-light uppercase text-gray-400 ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}>week number</span>
         </div>
       </div>
-      <div className="h-100 relative flex flex-1 pb-4">
+      <div className="relative flex h-full flex-1 pb-4">
         {CalDates.map((day, index) => 
           index < CalDates.length - 2 &&
           WeekdayCalendarCell({
@@ -89,7 +89,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
               newMonth: weekDays[index + 1] === 1
             })
         )}
-        <div className="bg-white flex-1 flex flex-col">
+        <div className="flex flex-1 flex-col bg-white">
           {CalDates.map((day, index) => 
             index >= CalDates.length - 2 &&
             WeekdayCalendarCell({
@@ -105,7 +105,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
           )}
         </div>
       </div>
-      <div className={`border-t h-36 w-full bg-white p-4 ${calendarSetup.canvas}`}>
+      <div className={`h-36 w-full border-t bg-white p-4 ${calendarSetup.canvas}`}>
       </div>
     </div>
   );

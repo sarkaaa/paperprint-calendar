@@ -48,10 +48,10 @@ const MonthlyCalendar = ({ calendar }: { calendar: any }) => {
   }
 
   return (
-  <div className="bg-blue-700 p-12 min-h-svh flex relative flex-col">
-    <div className="bg-slate-50 flex justify-between px-4 py-8">
+  <div className="relative flex min-h-svh flex-col bg-blue-700 p-12">
+    <div className="flex justify-between bg-slate-50 px-4 py-8">
       <h2 className="text-4xl font-semibold">{calendar.month}</h2>
-      <h2 className="text-4xl font-semibold angkor">{calendar.year}</h2>
+      <h2 className="text-4xl font-semibold">{calendar.year}</h2>
     </div>
     <div className="grid">
       {
@@ -61,13 +61,13 @@ const MonthlyCalendar = ({ calendar }: { calendar: any }) => {
               Array.from({ length: 7 }).map((_, j) => {
                 if (i === 0 && j < firstDayPosition) {
                   return (
-                    <div className="bg-slate-50 p-4 flex-1 flex flex-col" key={j}>
+                    <div className="flex flex-1 flex-col bg-slate-50 p-4" key={j}>
                       <span>{weekDays[j]}</span>
                     </div>
                   );
                 } else {
                   return (
-                    <div className="bg-slate-50 p-4 flex-1 flex flex-col" key={j}>
+                    <div className="flex flex-1 flex-col bg-slate-50 p-4" key={j}>
                       <span>{setDay(day)}</span>
                     </div>
                   );

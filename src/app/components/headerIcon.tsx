@@ -5,13 +5,13 @@ const HeaderIcon = () => {
   const month = date.getMonth();
   const day = date.getDate();
 
-  return <div className="rounded-xl bg-slate-50 shadow-xl relative shake-on-hover">
-    <div className="rounded-tl-xl rounded-tr-xl bg-red-700 px-10 py-2 relative flex justify-center">
-      <span className="text-white uppercase font-semibold text-2xl tracking-widest">
+  return <div className="shake-on-hover relative rounded-xl bg-slate-50 shadow-xl">
+    <div className="relative flex justify-center rounded-t-xl bg-red-700 px-10 py-2">
+      <span className="text-2xl font-semibold uppercase tracking-widest text-white">
         {MONTHS[month]}
       </span>
     </div>
-    <div className="px-10 py-6 relative flex justify-center">
+    <div className="relative flex justify-center px-10 py-6">
       <span className="text-6xl font-extrabold">
         {day}
       </span>
