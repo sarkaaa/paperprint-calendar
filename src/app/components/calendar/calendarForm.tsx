@@ -68,7 +68,7 @@ const CalendarForm = () => {
           Configure your calendar
         </h2>
       </div>
-      <div className="flex flex-wrap mt-16 gap-6">
+      <div className="flex flex-wrap mt-6 md:mt-16 gap-6">
       {
         // TODO: Set weekly/monthly calendar
         /* <CalendarFormField title="1. Choose structure" formValues={structureFileds} onClick={(e: Event) => handleInput(e)} calendarValueCheck={calendarSetup.type} /> */

@@ -73,6 +73,7 @@ h1 {
   border-radius: 6px;
   border-color: rgb(238 242 255);
   background-color: rgb(238 242 255);
+  width: auto;
 }
 
 .react-calendar__navigation button:enabled:hover,

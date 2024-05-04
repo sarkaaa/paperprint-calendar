@@ -12,7 +12,7 @@ export const PrintComponent = ({ calendar, calendarSetup }: { calendar: object, 
       </div>
       <ReactToPrint
           trigger={() =>  <div className='flex justify-center mx-auto relative w-full'>
-          <a href="#" className='mx-auto my-4 bg-indigo-600 hover:bg-indigo-800 focus:bg-indigo-800 px-8 py-4 inline-block text-white font-semibold text-xl rounded'>Download & print!</a>
+          <a href="#" className='mx-auto my-8 bg-indigo-600 hover:bg-indigo-800 focus:bg-indigo-800 px-8 py-4 inline-block text-white font-semibold text-xl rounded transition-all text-center'>Download & print!</a>
           </div>
           }
           content={() => componentRef?.current}
