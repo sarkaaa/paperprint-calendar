@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <section className="w-full bg-gradient-to-tr from-indigo-50 to-indigo-100 p-6 py-10 lg:p-24">
+      <section className="w-full bg-gradient-to-tr from-indigo-50 to-indigo-200 p-6 py-10 lg:p-24">
         <div className="mx-auto w-auto max-w-screen-2xl">
       <div className="flex justify-center">
         <HeaderIcon />
@@ -52,7 +52,7 @@ export default function Home() {
         </p>
       </div>
       <div className="relative my-8 flex justify-center gap-2">
-        <a href="https://github.com/sarkaaa/paperprint-calendar" className="inline-block rounded-md bg-slate-300 px-4 py-2 text-center font-semibold transition-all hover:bg-slate-400 focus:bg-slate-400" target="_blank">Github.com</a>
+        <a href="https://github.com/sarkaaa/paperprint-calendar" className="color-slate-950 inline-block rounded-md bg-slate-300 px-4 py-2 text-center font-semibold transition-all hover:bg-slate-400 focus:bg-slate-400" target="_blank">Github.com</a>
         <Link activeClass="active"
           to="canvas"
           spy={true}
@@ -66,7 +66,7 @@ export default function Home() {
       </div>
       <div>
         <div>
-          <h2 className="mb-6 mt-12 text-center text-3xl">
+          <h2 className="color-slate-950 mb-6 mt-12 text-center text-3xl">
             How does it work?
           </h2>
         </div>

@@ -68,7 +68,7 @@ const CalendarForm = () => {
     <div>
       <div>
         <div>
-          <h2 className="text-center text-3xl font-bold">
+          <h2 className="color-slate-950 text-center text-3xl font-bold">
             Configure your calendar
           </h2>
         </div>

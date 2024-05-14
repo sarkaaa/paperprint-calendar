@@ -12,7 +12,7 @@ const HeaderIcon = () => {
       </span>
     </div>
     <div className="relative flex justify-center px-10 py-6">
-      <span className="text-6xl font-extrabold">
+      <span className="color-slate-950 text-6xl font-extrabold">
         {day}
       </span>
     </div>
