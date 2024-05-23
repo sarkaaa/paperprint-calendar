@@ -6,12 +6,11 @@ interface ComponentToPrintProps {
   calendarSetup: object;
 }
 
-// export default ComponentToPrint;
 const ComponentToPrint = React.forwardRef<
   HTMLDivElement,
   ComponentToPrintProps
 >(({ calendar, calendarSetup }, ref) => (
-  <div ref={ref} >
+  <div ref={ref} className="calendar-printable">
     <WeeklyCalendar calendar={calendar} calendarSetup={calendarSetup} />
   </div>
 ));
