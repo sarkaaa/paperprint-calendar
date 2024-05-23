@@ -32,16 +32,21 @@ const CalendarComponent = ({ setCalendarHandle }: { setCalendarHandle: any }) =>
       setCalendarHandle({ target: { name: 'year', value: date.getFullYear() }})
       setCalendarHandle({ target: { name: 'weekNumber', value: wn }})
       setCalendarHandle({ target: { name: 'weekDayNumbers', value: Array.from({length: 7}, (_, i) => startDay + i) }})
+
+      const values = {
+        month: date.getMonth(),
+        year: date.getFullYear(),
+        weekNumber: wn,
+        weekDayNumbers: Array.from({length: 7}, (_, i) => startDay + i)
+      }
+
+      localStorage.setItem('calendarDatesData', JSON.stringify(values));
     } else {
       return 1;
     }
   }
 
-  return (
-    <div>
-      <Calendar showNeighboringMonth onClickWeekNumber={handleWeekNumber} onClickMonth={handleMonth} onChange={handleMonth} locale="en-GB" showWeekNumbers />
-    </div>
-  );
+  return <Calendar showNeighboringMonth onClickWeekNumber={handleWeekNumber} onClickMonth={handleMonth} onChange={handleMonth} locale="en-GB" showWeekNumbers />
 };
 
 export default CalendarComponent;
