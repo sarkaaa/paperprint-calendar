@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import { PrintComponent } from "../print/printComponent";
 import CalendarComponent from "./calendarComponent";
 import CalendarFormField from "./formField";
@@ -8,6 +7,7 @@ import {
   colorFields,
   themeFields,
 } from "../../data/configurationFormData";
+import Loader from "../loader";
 
 type CalendarValuesProps = {
   type: "weekly" | "monthly";
@@ -18,15 +18,6 @@ type CalendarValuesProps = {
 };
 
 const CalendarForm = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<CalendarValuesProps>();
-
-  // const onSubmit: SubmitHandler<CalendarValuesProps> = (data) => console.log(data)
-
   const calendarDefaultValues: CalendarValuesProps = {
     type: "weekly",
     theme: "minimalism",
@@ -34,7 +25,7 @@ const CalendarForm = () => {
     color: "blackAndWhite",
   };
 
-  const [calendarSetup, setCalendar] = useState(calendarDefaultValues);
+  const [calendarSetup, setCalendar] = useState<CalendarValuesProps | null>(null);
 
   const [calendarDates, setCalendarDates] = useState({
     weekNumber: null,
@@ -48,10 +39,17 @@ const CalendarForm = () => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
-    setCalendar((prevState) => ({
+    setCalendar((prevState: any) => ({
       ...prevState,
       [fieldName]: fieldValue,
     }));
+
+    let newVals = (prevState: any) => {
+      return { ...prevState, [fieldName]: fieldValue };
+    };
+    let values = newVals(calendarSetup);
+
+    localStorage.setItem("calendarData", JSON.stringify(values));
   };
 
   const setCalendarHandle = (e: any) => {
@@ -63,6 +61,21 @@ const CalendarForm = () => {
       [fieldName]: fieldValue,
     }));
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      let calendarData = localStorage.getItem("calendarData");
+      let calendarDatesData = localStorage.getItem("calendarDatesData");
+
+      if (calendarData) {
+        setCalendar(JSON.parse(calendarData))
+      } else {
+        setCalendar(calendarDefaultValues);
+      }
+      
+      if (calendarDatesData) setCalendarDates(JSON.parse(calendarDatesData));
+    }
+  }, []);
 
   return (
     <div>
@@ -83,23 +96,33 @@ const CalendarForm = () => {
               <CalendarComponent setCalendarHandle={setCalendarHandle} />
             </div>
           </div>
-          {[themeFields, canvasFields, colorFields].map((fields, index) => (
-            <CalendarFormField
-              key={index}
-              title={`${index + 2}. Choose ${fields[0].name}`}
-              formValues={fields}
-              onClick={(e: React.MouseEvent) => handleInput(e)}
-              calendarValueCheck={calendarSetup[fields[0].name].toString()}
-            />
-          ))}
+          {[themeFields, canvasFields, colorFields].map((fields, index) =>
+            calendarSetup ? (
+              <CalendarFormField
+                key={index}
+                title={`${index + 2}. Choose ${fields[0].name}`}
+                formValues={fields}
+                onClick={(e: React.MouseEvent) => handleInput(e)}
+                calendarValueCheck={calendarSetup[fields[index].name]}
+              />
+            ) : (
+              <div className="flex-1">
+                <Loader />
+              </div>
+            )
+          )}
         </div>
       </div>
       <div>
         <h2 className="my-8 text-center text-3xl font-bold">Your calendar</h2>
-        <PrintComponent
-          calendar={calendarDates}
-          calendarSetup={calendarSetup}
-        />
+        {calendarSetup ? (
+          <PrintComponent
+            calendar={calendarDates}
+            calendarSetup={calendarSetup || calendarDefaultValues}
+          />
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );
