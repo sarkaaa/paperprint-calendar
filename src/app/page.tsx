@@ -70,7 +70,7 @@ const Home = () => (
               How does it work?
             </h2>
           </div>
-          <div className="mx-auto flex w-2/3 flex-col flex-wrap gap-8 md:flex-row md:gap-12">
+          <div className="px-4 md:px-0 mx-auto flex w-full md:w-2/3 flex-col flex-wrap gap-8 md:flex-row md:gap-12">
             {DESCRIPTION_VALUES.map(({ title, description }, index) => (
               <HeaderDescriptionItem
                 key={index}
