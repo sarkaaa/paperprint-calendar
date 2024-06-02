@@ -8,11 +8,11 @@ const HeaderDescriptionItem = ({
   description: string;
 }) => (
   <div className="flex-1">
-    <h3 className="text-xl font-bold">
+    <h3 className="color-slate-950 text-xl font-bold">
       <span className="mr-2 text-pink-600">{index}.</span>
       {title}
     </h3>
-    <p>{description}</p>
+    <p className="color-slate-950">{description}</p>
   </div>
 );
 
