@@ -16,7 +16,11 @@ const config: Config = {
       fontFamily: {
         angkor: ['var(--font-angkor)'],
         inter: ['var(--font-inter)'],
-      },  
+      },
+      colors: {
+        customBlue: '#818CF8',
+        customLightBlue: '#eef2ff',
+      },
     },
   },
   plugins: [],
