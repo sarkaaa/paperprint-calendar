@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { PrintComponent } from "../print/printComponent";
 import CalendarComponent from "./calendarComponent";
 import CalendarFormField from "./formField";
@@ -8,6 +8,7 @@ import {
   themeFields,
 } from "../../data/configurationFormData";
 import Loader from "../loader";
+import { useLocalStorage } from 'usehooks-ts'
 
 type CalendarValuesProps = {
   type: "weekly" | "monthly";
@@ -25,34 +26,27 @@ const CalendarForm = () => {
     color: "blackAndWhite",
   };
 
-  const [calendarSetup, setCalendar] = useState<CalendarValuesProps | null>(null);
-
-  const [calendarDates, setCalendarDates] = useState({
+  const calendarDatesDefault = {
     weekNumber: null,
     weekDayNumbers: [],
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
-  });
+  }
+
+  const [calendarSetup, setCalendar] = useLocalStorage('calendarData', calendarDefaultValues)
+  const [calendarDates, setCalendarDates] = useLocalStorage('calendarDatesData', calendarDatesDefault)
+
+  const [mount, setMount]= useState(false)
 
   // TMP
-  const handleInput = (e: any) => {
+  const handleInput = (e: { target: { [key: string]: any }}) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
-    setCalendar((prevState: any) => ({
-      ...prevState,
-      [fieldName]: fieldValue,
-    }));
-
-    let newVals = (prevState: any) => {
-      return { ...prevState, [fieldName]: fieldValue };
-    };
-    let values = newVals(calendarSetup);
-
-    localStorage.setItem("calendarData", JSON.stringify(values));
+    setCalendar({ ...calendarSetup, [fieldName]: fieldValue })
   };
 
-  const setCalendarHandle = (e: any) => {
+  const setCalendarHandle = (e: { target: { [key: string]: any }}) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
@@ -63,18 +57,7 @@ const CalendarForm = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      let calendarData = localStorage.getItem("calendarData");
-      let calendarDatesData = localStorage.getItem("calendarDatesData");
-
-      if (calendarData) {
-        setCalendar(JSON.parse(calendarData))
-      } else {
-        setCalendar(calendarDefaultValues);
-      }
-      
-      if (calendarDatesData) setCalendarDates(JSON.parse(calendarDatesData));
-    }
+    setMount(true)
   }, []);
 
   return (
@@ -115,10 +98,10 @@ const CalendarForm = () => {
       </div>
       <div>
         <h2 className="my-8 text-center text-3xl font-bold">Your calendar</h2>
-        {calendarSetup ? (
+        {mount ? (
           <PrintComponent
             calendar={calendarDates}
-            calendarSetup={calendarSetup || calendarDefaultValues}
+            calendarSetup={calendarSetup}
           />
         ) : (
           <Loader />

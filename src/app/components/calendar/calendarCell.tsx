@@ -3,7 +3,7 @@ import { libreBaskerville, raleway } from "../../utils/fonts";
 type Props = {
   title: string;
   dayNumber: number;
-  bgType: 'lines' | 'dots' | 'empty';
+  bgType: 'lines' | 'dots' | 'blank';
   last: boolean
   index: number
   color: string
