@@ -50,5 +50,8 @@
   "lint-staged": {
     "*.{ts,tsx}": "next lint --fix",
     "*.{ts,tsx,js,json}": "prettier --cache --write"
-  }
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
+ }
 }
