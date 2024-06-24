@@ -25,7 +25,6 @@ const CalendarForm = () => {
     canvas: "lines",
     color: "blackAndWhite",
   };
-
   const calendarDatesDefault = {
     weekNumber: null,
     weekDayNumbers: [],
@@ -36,6 +35,7 @@ const CalendarForm = () => {
   const [calendarSetup, setCalendar] = useLocalStorage('calendarData', calendarDefaultValues)
   const [calendarDates, setCalendarDates] = useLocalStorage('calendarDatesData', calendarDatesDefault)
 
+  // https://dev.to/gvegacl/nextjs-server-prop-did-not-match-client-prop-and-conditional-styleclass-rendering-2i4c
   const [mount, setMount]= useState(false)
 
   // TMP
@@ -85,7 +85,7 @@ const CalendarForm = () => {
                 key={index}
                 title={`${index + 2}. Choose ${fields[0].name}`}
                 formValues={fields}
-                onClick={(e: React.MouseEvent) => handleInput(e)}
+                onChange={(e: React.ChangeEvent) => handleInput(e)}
                 calendarValueCheck={calendarSetup[fields[index].name]}
               />
             ) : (
