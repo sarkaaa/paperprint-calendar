@@ -79,7 +79,7 @@
 .react-calendar__navigation button:enabled:focus,
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
-  @apply bg-customLightBlue text-stone-950;
+  @apply bg-customBlue text-white;
 }
 
 .react-calendar__tile--active,

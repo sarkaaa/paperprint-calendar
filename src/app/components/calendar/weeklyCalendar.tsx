@@ -6,6 +6,12 @@ import { WEEKDAYS, MONTHS } from "../../data/constants";
 
 const CalDates = Object.values(WEEKDAYS);
 
+const CANVAS_VARIANTS: any = {
+  lines: "w-full bg-[length:25px_25px] lines",
+  dots: "w-full bg-[length:15px_15px] dots",
+  blank: "bg-transparent",
+};
+
 const daysInMonth = (month: number, year: number): number => {
   return new Date(year, month, 0).getDate();
 }
@@ -25,7 +31,7 @@ const defaultWeekDayNumbers = () => {
 }
 
 const fillWeekdays = (calendar: any, weekDays: Array<number>) => {
-  if (calendar.weekDayNumbers.some((v: number) => v <= 0)) {
+  if (calendar.weekDayNumbers?.some((v: number) => v <= 0)) {
     const daysMonthZero = daysInMonth(calendar.month === 0 ? 12 : calendar.month, calendar.month === 1 ? calendar.year - 1 : calendar.year);
     let numberOfDaysOfPrevMonth = calendar?.weekDayNumbers.filter((day: number) => day <= 0).length;
     return weekDays = calendar?.weekDayNumbers.map((day: number) => {
@@ -38,7 +44,7 @@ const fillWeekdays = (calendar: any, weekDays: Array<number>) => {
   } else {
     const daysMonth = daysInMonth(calendar.month + 1, calendar.year);
     let replacementValue = 1;
-    return weekDays = calendar?.weekDayNumbers.map((day: number) => day <= daysMonth ? day : replacementValue++)
+    return weekDays = calendar?.weekDayNumbers?.map((day: number) => day <= daysMonth ? day : replacementValue++)
   }
 }
 
@@ -51,7 +57,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
     calendar.weekNumber = getWeekNumber(new Date());
   }
 
-  if (calendar.weekDayNumbers.length === 0) {
+  if (calendar.weekDayNumbers?.length === 0) {
     calendar.weekDayNumbers = defaultWeekDayNumbers();
   }
 
@@ -59,7 +65,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
 
   return (
     <div className="relative flex size-auto min-h-svh flex-col justify-stretch overflow-x-scroll bg-white p-4">
-      <div className="flex items-end justify-between bg-white px-2 py-8">
+      <div className="flex items-end justify-between bg-white px-2 pt-4 pb-8">
         <div>
           <span className={classNames(`text-4xl font-semibold mr-4 uppercase tracking-wider ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`, {
             'text-black': calendarSetup.color === 'blackAndWhite',
@@ -81,7 +87,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
           WeekdayCalendarCell({
               title: day,
               dayNumber: weekDays[index],
-              bgType: calendarSetup.canvas,
+              bgType: CANVAS_VARIANTS[calendarSetup.canvas],
               theme: calendarSetup.theme,
               last: index === CalDates.length - 1,
               index: index,
@@ -95,7 +101,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
             WeekdayCalendarCell({
                 title: day,
                 dayNumber: weekDays[index],
-                bgType: calendarSetup.canvas,
+                bgType: CANVAS_VARIANTS[calendarSetup.canvas],
                 theme: calendarSetup.theme,
                 last: true,
                 index: index,
@@ -105,7 +111,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
           )}
         </div>
       </div>
-      <div className={`h-36 w-full border-t bg-white p-4 ${calendarSetup.canvas}`}>
+      <div className={`h-36 w-full border-t bg-white p-4 ${CANVAS_VARIANTS[calendarSetup.canvas]}`}>
       </div>
     </div>
   );
