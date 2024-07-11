@@ -1,5 +1,7 @@
-import { useEffect, useState, useRef } from "react";
-import { PrintComponent } from "../print/printComponent";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from 'usehooks-ts'
+import { CalendarInputElement, CalendarSetupProps } from "@/app/utils/types";
+import { PrintCalendar } from "../print/printCalendar";
 import CalendarComponent from "./calendarComponent";
 import CalendarFormField from "./formField";
 import {
@@ -8,14 +10,9 @@ import {
   themeFields,
 } from "../../data/configurationFormData";
 import Loader from "../loader";
-import { useLocalStorage } from 'usehooks-ts'
 
-type CalendarValuesProps = {
-  type: "weekly" | "monthly";
-  theme: "minimalism" | "classic";
-  canvas: "lines" | "dots" | "empty";
-  color: "blackAndWhite" | "red" | "blue" | "green";
-  [key: string]: any;
+type CalendarValuesProps = CalendarSetupProps & {
+  [key: string]: string;
 };
 
 const CalendarForm = () => {
@@ -39,14 +36,14 @@ const CalendarForm = () => {
   const [mount, setMount]= useState(false)
 
   // TMP
-  const handleInput = (e: { target: { [key: string]: any }}) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
+  const handleInput = (e: React.ChangeEvent<Element>) => {
+    const fieldName = (e.target as HTMLInputElement).name;
+    const fieldValue = (e.target as HTMLInputElement).value;
 
     setCalendar({ ...calendarSetup, [fieldName]: fieldValue })
   };
 
-  const setCalendarHandle = (e: { target: { [key: string]: any }}) => {
+  const setCalendarHandle = (e: CalendarInputElement) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
 
@@ -71,7 +68,7 @@ const CalendarForm = () => {
         <div className="mt-6 flex flex-wrap gap-6 md:mt-16">
           {
             // TODO: Set weekly/monthly calendar
-            /* <CalendarFormField title="1. Choose structure" formValues={structureFileds} onClick={(e: Event) => handleInput(e)} calendarValueCheck={calendarSetup.type} /> */
+            /* <CalendarFormField title="1. Choose structure" formItems={structureFileds} onClick={(e: Event) => handleInput(e)} calendarValueCheck={calendarSetup.type} /> */
           }
           <div className="flex-1 rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4">
             <h3 className="font-semibold">1. Select week</h3>
@@ -82,14 +79,14 @@ const CalendarForm = () => {
           {[themeFields, canvasFields, colorFields].map((fields, index) =>
             calendarSetup ? (
               <CalendarFormField
-                key={index}
+                key={fields[0].name}
                 title={`${index + 2}. Choose ${fields[0].name}`}
-                formValues={fields}
-                onChange={(e: React.ChangeEvent) => handleInput(e)}
+                formItems={fields}
+                onChange={(e: React.ChangeEvent<Element>) => handleInput(e)}
                 calendarValueCheck={calendarSetup[fields[index].name]}
               />
             ) : (
-              <div className="flex-1">
+              <div key="loader" className="flex-1">
                 <Loader />
               </div>
             )
@@ -99,7 +96,7 @@ const CalendarForm = () => {
       <div>
         <h2 className="my-8 text-center text-3xl font-bold">Your calendar</h2>
         {mount ? (
-          <PrintComponent
+          <PrintCalendar
             calendar={calendarDates}
             calendarSetup={calendarSetup}
           />

@@ -1,15 +1,17 @@
-// const CalDates = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+// TODO: Create a monthly calendar component that displays the days of the month in a grid format.
+// This component is not yet implemented in the application.
+import { CalendarProps } from "@/app/utils/types";
 
 const daysInMonth = (month: number, year: number): number => {
   return new Date(year, month, 0).getDate();
 }
 
 const daysArray = (days: number): number[] => {
-  return Array.from({length: days}, (_, i) => i + 1);
+  return Array.from({ length: days }, (_, i) => i + 1);
 }
 
-const MonthlyCalendar = ({ calendar }: { calendar: any }) => {
-  let daysMonth: number = daysInMonth(calendar.month, calendar.year);
+const MonthlyCalendar = ({ calendar }: { calendar: CalendarProps }) => {
+  const daysMonth: number = daysInMonth(calendar.month, calendar.year);
 
   let weekDays: number[] = [];
 
@@ -37,7 +39,7 @@ const MonthlyCalendar = ({ calendar }: { calendar: any }) => {
 
   const weekRows = Math.floor(daysMonth / 7);
 
-  let day: number = 1;
+  let day = 1;
 
   const daysInMonthArray = daysArray(daysMonth);
   const setDay = (dayd: number) => {

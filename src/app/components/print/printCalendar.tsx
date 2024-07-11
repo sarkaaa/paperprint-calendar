@@ -1,13 +1,30 @@
 import React, { useRef } from "react";
 import ReactToPrint from "react-to-print";
-import ComponentToPrint from "./componentToPrint";
+import { CalendarProps, CalendarSetupProps } from "@/app/utils/types";
+import WeeklyCalendar from "../calendar/weeklyCalendar";
 
-export const PrintComponent = ({
+type ComponentToPrintProps = {
+  calendar: CalendarProps;
+  calendarSetup: CalendarSetupProps;
+}
+
+const ComponentToPrint = React.forwardRef<
+  HTMLDivElement,
+  ComponentToPrintProps
+>(({ calendar, calendarSetup }, ref) => (
+  <div ref={ref} className="calendar-printable">
+    <WeeklyCalendar calendar={calendar} calendarSetup={calendarSetup} />
+  </div>
+));
+
+ComponentToPrint.displayName = 'ComponentToPrint';
+
+export const PrintCalendar = ({
   calendar,
   calendarSetup,
 }: {
-  calendar: object;
-  calendarSetup: object;
+  calendar: CalendarProps;
+  calendarSetup: CalendarSetupProps;
 }) => {
   const componentRef = useRef(null);
 

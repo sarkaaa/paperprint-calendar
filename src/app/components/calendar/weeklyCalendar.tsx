@@ -3,14 +3,10 @@ import { getWeekNumber } from '../../../../node_modules/react-calendar/dist/cjs/
 import classNames from "classnames";
 import { libreBaskerville, raleway } from "../../utils/fonts";
 import { WEEKDAYS, MONTHS } from "../../data/constants";
+import { CalendarProps, CalendarSetupProps } from "@/app/utils/types";
+import { CANVAS_BACKGROUNDS } from "@/app/data/configurationFormData";
 
 const CalDates = Object.values(WEEKDAYS);
-
-const CANVAS_VARIANTS: any = {
-  lines: "w-full bg-[length:25px_25px] lines",
-  dots: "w-full bg-[length:15px_15px] dots",
-  blank: "bg-transparent",
-};
 
 const daysInMonth = (month: number, year: number): number => {
   return new Date(year, month, 0).getDate();
@@ -27,10 +23,10 @@ const defaultWeekDayNumbers = () => {
     startDay = date.getDate() - dayNumber + 1;
   }
 
-  return Array.from({length: 7}, (_, i) => startDay + i);
+  return Array.from({ length: 7 }, (_, i) => startDay + i);
 }
 
-const fillWeekdays = (calendar: any, weekDays: Array<number>) => {
+const fillWeekdays = (calendar: CalendarProps, weekDays: Array<number>) => {
   if (calendar.weekDayNumbers?.some((v: number) => v <= 0)) {
     const daysMonthZero = daysInMonth(calendar.month === 0 ? 12 : calendar.month, calendar.month === 1 ? calendar.year - 1 : calendar.year);
     let numberOfDaysOfPrevMonth = calendar?.weekDayNumbers.filter((day: number) => day <= 0).length;
@@ -44,24 +40,37 @@ const fillWeekdays = (calendar: any, weekDays: Array<number>) => {
   } else {
     const daysMonth = daysInMonth(calendar.month + 1, calendar.year);
     let replacementValue = 1;
-    return weekDays = calendar?.weekDayNumbers?.map((day: number) => day <= daysMonth ? day : replacementValue++)
+    weekDays = calendar?.weekDayNumbers?.map((day: number) => day <= daysMonth ? day : replacementValue++)
+    return weekDays;
   }
 }
 
-const colorScheme = ({ color, style }: {color: 'blackAndWhite' | 'red' | 'blue' | 'green'; style: 'text' | 'border'}) => {
+const colorScheme = ({ color }: {color: 'blackAndWhite' | 'red' | 'blue' | 'green'; style: 'text' | 'border'}) => {
   return color === 'blackAndWhite' ? 'text-black' : 'text-' + color + '-700';
 }
 
-const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSetup: any }) => {
+const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: CalendarProps, calendarSetup: CalendarSetupProps }) => {
   if (!calendar.weekNumber) {
     calendar.weekNumber = getWeekNumber(new Date());
   }
 
-  if (calendar.weekDayNumbers?.length === 0) {
+  if (calendar.weekDayNumbers.length === 0) {
     calendar.weekDayNumbers = defaultWeekDayNumbers();
   }
 
-  let weekDays: number[] = fillWeekdays(calendar || defaultWeekDayNumbers(), []);
+  const weekDays: number[] = fillWeekdays(calendar, [] || defaultWeekDayNumbers());
+
+  const renderCalendarCell = (day: string, index: number) => {
+    return WeekdayCalendarCell({
+      title: day,
+      dayNumber: weekDays[index],
+      bgType: calendarSetup.canvas,
+      theme: calendarSetup.theme,
+      last: index === CalDates.length - 1,
+      color: colorScheme({ color: calendarSetup.color, style: 'text' }),
+      newMonth: weekDays[index + 1] === 1
+    });
+  }
 
   return (
     <div className="relative flex size-auto min-h-svh flex-col justify-stretch overflow-x-scroll bg-white p-4">
@@ -72,46 +81,26 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: any, calendarSe
             'text-red-700': calendarSetup.color === 'red',
             'text-blue-700': calendarSetup.color === 'blue',
             'text-green-700': calendarSetup.color === 'green'
-          
+
           })}>{MONTHS[calendar.month]}</span>
           <span className={`text-4xl font-semibold text-gray-400 ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}>{calendar.year}</span>
         </div>
         <div className="flex flex-col items-end">
-          <span className={`text-3xl font-semibold ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className} ${colorScheme({ color: calendarSetup.color, style: 'text'})}`}>{calendar.weekNumber}</span>
+          <span className={`text-3xl font-semibold ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className} ${colorScheme({ color: calendarSetup.color, style: 'text' })}`}>{calendar.weekNumber}</span>
           <span className={`text-xs font-light uppercase text-gray-400 ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}>week number</span>
         </div>
       </div>
       <div className="relative flex h-full flex-1 pb-4">
-        {CalDates.map((day, index) => 
-          index < CalDates.length - 2 &&
-          WeekdayCalendarCell({
-              title: day,
-              dayNumber: weekDays[index],
-              bgType: CANVAS_VARIANTS[calendarSetup.canvas],
-              theme: calendarSetup.theme,
-              last: index === CalDates.length - 1,
-              index: index,
-              color: colorScheme({ color: calendarSetup.color, style: 'text'}),
-              newMonth: weekDays[index + 1] === 1
-            })
+        {CalDates.slice(0, 5).map((day, index) =>
+          renderCalendarCell(day, index)
         )}
         <div className="flex flex-1 flex-col bg-white">
-          {CalDates.map((day, index) => 
-            index >= CalDates.length - 2 &&
-            WeekdayCalendarCell({
-                title: day,
-                dayNumber: weekDays[index],
-                bgType: CANVAS_VARIANTS[calendarSetup.canvas],
-                theme: calendarSetup.theme,
-                last: true,
-                index: index,
-                color: colorScheme({ color: calendarSetup.color, style: 'text'}),
-                newMonth: weekDays[index + 1] === 1
-              })
+          {CalDates.slice(5).map((day, index) =>
+            renderCalendarCell(day, index)
           )}
         </div>
       </div>
-      <div className={`h-36 w-full border-t bg-white p-4 ${CANVAS_VARIANTS[calendarSetup.canvas]}`}>
+      <div className={`h-36 w-full border-t bg-white p-4 ${CANVAS_BACKGROUNDS[calendarSetup.canvas]}`}>
       </div>
     </div>
   );

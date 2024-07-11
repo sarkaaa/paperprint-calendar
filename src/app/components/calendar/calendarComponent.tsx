@@ -1,33 +1,21 @@
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../../globals.css';
-import {getWeekNumber} from '../../../../node_modules/react-calendar/dist/cjs/shared/dates.js';
+import { getWeekNumber } from '../../../../node_modules/react-calendar/dist/cjs/shared/dates.js';
+import { CalendarInputElement } from '@/app/utils/types';
 
 type ValuePiece = Date | null;
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type DateProps = ValuePiece | [ValuePiece, ValuePiece];
 
 const CalendarComponent = ({
   setCalendarHandle,
 }: {
-  setCalendarHandle: (e: any) => void;
+  setCalendarHandle: (e: CalendarInputElement) => void;
 }) => {
-  const handleWeekNumber = (wN: number, date: Date) => {
-    const dayNumber = date.getDate();
-
-    setCalendarHandle({target: {name: 'weekNumber', value: wN}});
-    setCalendarHandle({
-      target: {
-        name: 'weekDayNumbers',
-        value: Array.from({length: 7}, (_, i) => dayNumber + i),
-      },
-    });
-    setCalendarHandle({target: {name: 'year', value: date.getFullYear()}});
-  };
-
-  const handleMonth = (date: Date | Value) => {
+  const handleCalendar = (date: DateProps) => {
     if (date instanceof Date) {
-      const wn = getWeekNumber(date);
+      const weekNumber = getWeekNumber(date);
       const dayNumber = date.getDay();
 
       let startDay: number;
@@ -37,26 +25,30 @@ const CalendarComponent = ({
         startDay = date.getDate() - dayNumber + 1;
       }
 
-      setCalendarHandle({target: {name: 'month', value: date.getMonth()}});
+      setCalendarHandle({ target: { name: 'month', value: date.getMonth() } });
       setCalendarHandle({
-        target: {name: 'year', value: date.getFullYear()},
+        target: { name: 'year', value: date.getFullYear() },
       });
-      setCalendarHandle({target: {name: 'weekNumber', value: wn}});
+      setCalendarHandle({ target: { name: 'weekNumber', value: weekNumber } });
       setCalendarHandle({
         target: {
           name: 'weekDayNumbers',
-          value: Array.from({length: 7}, (_, i) => startDay + i),
+          value: Array.from({ length: 7 }, (_, i) => startDay + i),
         },
       });
     }
+  };
+
+  const handleWeekNumber = (weekNumber: number, date: Date) => {
+    setCalendarHandle({ target: { name: 'weekNumber', value: weekNumber } });
+    handleCalendar(date)
   };
 
   return (
     <Calendar
       showNeighboringMonth
       onClickWeekNumber={handleWeekNumber}
-      onClickMonth={handleMonth}
-      onChange={handleMonth}
+      onChange={handleCalendar}
       locale='en-GB'
       showWeekNumbers
     />

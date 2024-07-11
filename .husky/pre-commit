@@ -3,7 +3,7 @@
 
 echo "Checking your project before committing 🕵🏻‍♀️";
 
-npx lint-staged || (
+yarn lint-staged || (
     echo "❌ Failed! Some errors or warning were found. ☠️ ❌";
     false;
 )

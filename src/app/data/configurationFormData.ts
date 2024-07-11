@@ -46,11 +46,11 @@ export const canvasFields = [
     example: "canvasExampleDots"
   },
   {
-    title: "Blank",
-    id: "blank",
+    title: "Empty",
+    id: "empty",
     name: "canvas",
-    value: "blank",
-    example: "canvasExampleBlank"
+    value: "empty",
+    example: "canvasExampleEmpty"
   }
 ]
 
@@ -80,3 +80,12 @@ export const colorFields = [
     value: "green"
   }
 ]
+
+/**
+* @description Canvas backgrounds Tailwind classes.
+*/
+export const CANVAS_BACKGROUNDS: { [key: string]: string } = {
+  lines: "w-full bg-[length:25px_25px] lines",
+  dots: "w-full bg-[length:15px_15px] dots",
+  empty: "bg-transparent",
+};
