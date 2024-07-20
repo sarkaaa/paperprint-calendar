@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from 'usehooks-ts'
 import { CalendarInputElement, CalendarSetupProps } from "@/app/utils/types";
-import { PrintCalendar } from "../print/printCalendar";
-import CalendarComponent from "./calendarComponent";
+import { PrintCalendar } from "../../print/printCalendar";
+import CalendarComponent from "../calendarComponent";
 import CalendarFormField from "./formField";
 import {
   canvasFields,
   colorFields,
   themeFields,
-} from "../../data/configurationFormData";
-import Loader from "../loader";
+} from "../../../data/configurationFormData";
+import Loader from "../../loader";
 
 type CalendarValuesProps = CalendarSetupProps & {
   [key: string]: string;

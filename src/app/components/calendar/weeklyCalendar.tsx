@@ -1,10 +1,10 @@
-import WeekdayCalendarCell from "./calendarCell";
-import { getWeekNumber } from '../../../../node_modules/react-calendar/dist/cjs/shared/dates.js';
 import classNames from "classnames";
-import { libreBaskerville, raleway } from "../../utils/fonts";
-import { WEEKDAYS, MONTHS } from "../../data/constants";
-import { CalendarProps, CalendarSetupProps } from "@/app/utils/types";
+import { getWeekNumber } from '../../../../node_modules/react-calendar/dist/cjs/shared/dates.js';
 import { CANVAS_BACKGROUNDS } from "@/app/data/configurationFormData";
+import { CalendarProps, CalendarSetupProps } from "@/app/utils/types";
+import { libreBaskerville, raleway } from "@/app/utils/fonts";
+import WeekdayCalendarCell from "./calendarCell";
+import { WEEKDAYS, MONTHS } from "../../data/constants";
 
 const CalDates = Object.values(WEEKDAYS);
 
@@ -66,6 +66,7 @@ const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: CalendarProps, 
       dayNumber: weekDays[index],
       bgType: calendarSetup.canvas,
       theme: calendarSetup.theme,
+      first: day === WEEKDAYS.Monday,
       last: index === CalDates.length - 1,
       color: colorScheme({ color: calendarSetup.color, style: 'text' }),
       newMonth: weekDays[index + 1] === 1
