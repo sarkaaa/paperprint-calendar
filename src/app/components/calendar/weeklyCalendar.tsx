@@ -106,7 +106,7 @@ const WeeklyCalendar = ({
   const renderCalendarCell = (day: string, index: number) => {
     return WeekdayCalendarCell({
       title: day,
-      dayNumber: weekDays[index],
+      dayNumber: weekDays[CalendarDatesArray.indexOf(day as WEEKDAYS)],
       bgType: calendarSetup.canvas,
       theme: calendarSetup.theme,
       first: day === WEEKDAYS.Monday,
