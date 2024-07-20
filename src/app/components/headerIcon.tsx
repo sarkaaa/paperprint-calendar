@@ -1,5 +1,9 @@
 import { MONTHS } from "../data/constants";
 
+/**
+ * Returns header icon for header component.
+ * @returns {JSX.Element} - The header icon.
+ */
 const HeaderIcon = () => {
   const date = new Date();
   const month = date.getMonth();

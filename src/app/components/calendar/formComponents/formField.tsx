@@ -15,6 +15,11 @@ type CalendarFormFieldProps = {
   calendarValueCheck: string
 }
 
+/**
+ * This function returns the font example based on the type.
+ * @param type {string} - The type of the font.
+ * @returns {string} - The font.
+ */
 const fontExample = (type: string) => {
   if (type === 'themeExampleClassic') {
     return libreBaskerville.className
@@ -23,6 +28,11 @@ const fontExample = (type: string) => {
   }
 }
 
+/**
+ * This function returns the canvas example based on the type.
+ * @param type {CanvasType} - The type of the canvas.
+ * @returns {JSX.Element} - The canvas.
+ */
 const canvasExample = (type: CanvasType) => {
   const canvasTypes = {
     canvasExampleLines: '-',
@@ -32,6 +42,11 @@ const canvasExample = (type: CanvasType) => {
   return <div className="flex-1 text-right">{canvasTypes[type]?.repeat(5)}</div>
 }
 
+/**
+ * This component is responsible for rendering the form fields for the calendar configuration.
+ * @param param0 {CalendarFormFieldProps} - The form fields for the calendar configuration.
+ * @returns {JSX.Element} - The form fields for the calendar configuration.
+ */
 const CalendarFormField = ({ title, formItems, onChange, calendarValueCheck }: CalendarFormFieldProps) => {
   return (
     <div className="flex-1 rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4">

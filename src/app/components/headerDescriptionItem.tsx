@@ -1,3 +1,6 @@
+/**
+ * Returns the header description item.
+ */
 const HeaderDescriptionItem = ({
   index,
   title,

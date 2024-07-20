@@ -15,6 +15,10 @@ type CalendarValuesProps = CalendarSetupProps & {
   [key: string]: string;
 };
 
+/**
+ * This component is responsible for rendering the form fields for the calendar configuration.
+ * @return {JSX.Element} The form fields for the calendar configuration.
+ */
 const CalendarForm = () => {
   const calendarDefaultValues: CalendarValuesProps = {
     type: "weekly",

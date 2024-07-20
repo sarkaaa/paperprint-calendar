@@ -26,6 +26,9 @@ const defaultWeekDayNumbers = () => {
   return Array.from({ length: 7 }, (_, i) => startDay + i);
 }
 
+/**
+ * This function returns the weekdays for the calendar. content
+ */
 const fillWeekdays = (calendar: CalendarProps, weekDays: Array<number>) => {
   if (calendar.weekDayNumbers?.some((v: number) => v <= 0)) {
     const daysMonthZero = daysInMonth(calendar.month === 0 ? 12 : calendar.month, calendar.month === 1 ? calendar.year - 1 : calendar.year);
@@ -45,9 +48,18 @@ const fillWeekdays = (calendar: CalendarProps, weekDays: Array<number>) => {
   }
 }
 
+/**
+ * Returns the color scheme for the calendar.
+ */
 const colorScheme = ({ color }: {color: 'blackAndWhite' | 'red' | 'blue' | 'green'; style: 'text' | 'border'}) => {
   return color === 'blackAndWhite' ? 'text-black' : 'text-' + color + '-700';
 }
+
+/**
+ * This component is responsible for rendering the weekly calendar.
+ * @param param0 {calendar, calendarSetup} - The properties of the weekly calendar.
+ * @returns {JSX.Element} - The weekly calendar.
+ */
 
 const WeeklyCalendar = ({ calendar, calendarSetup }: { calendar: CalendarProps, calendarSetup: CalendarSetupProps }) => {
   if (!calendar.weekNumber) {

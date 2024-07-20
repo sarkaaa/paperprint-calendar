@@ -8,6 +8,9 @@ type ComponentToPrintProps = {
   calendarSetup: CalendarSetupProps;
 }
 
+/**
+ * Returns the component that will be included in printed area.
+ */
 const ComponentToPrint = React.forwardRef<
   HTMLDivElement,
   ComponentToPrintProps
@@ -19,6 +22,10 @@ const ComponentToPrint = React.forwardRef<
 
 ComponentToPrint.displayName = 'ComponentToPrint';
 
+/**
+ * This components if responsible for printing the calendar.
+ * It includes the calendar view field and a button to download/print the calendar.
+ */
 export const PrintCalendar = ({
   calendar,
   calendarSetup,

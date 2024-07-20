@@ -15,6 +15,11 @@ type Props = {
   theme: 'classic' |  'minimalism';
 };
 
+/**
+ * This component is responsible for rendering the weekday calendar cell.
+ * @param param0 {Props} - The properties of the weekday calendar cell.
+ * @returns {JSX.Element} - The weekday calendar cell.
+ */
 const WeekdayCalendarCell = ({ title, dayNumber, bgType, first, last, color, newMonth, theme }: Props) =>  (
     <div key={title} className={`flex w-full flex-1 flex-col bg-white px-3 py-2 ${first && `border-l border-slate-300`} ${!last && `border-r border-slate-300`}`}>
       <div className={`flex items-center justify-center border-b border-gray-200 pb-2`}>

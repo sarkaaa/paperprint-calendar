@@ -8,6 +8,9 @@ type ValuePiece = Date | null;
 
 type DateProps = ValuePiece | [ValuePiece, ValuePiece];
 
+/**
+ * This function returns the calendar component.
+ */
 const CalendarComponent = ({
   setCalendarHandle,
 }: {
