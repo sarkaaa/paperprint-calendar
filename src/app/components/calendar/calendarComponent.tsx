@@ -5,7 +5,6 @@ import { getWeekNumber } from '../../../../node_modules/react-calendar/dist/cjs/
 import { CalendarInputElement } from '@/app/utils/types';
 
 type ValuePiece = Date | null;
-
 type DateProps = ValuePiece | [ValuePiece, ValuePiece];
 
 /**
@@ -16,9 +15,8 @@ const CalendarComponent = ({
 }: {
   setCalendarHandle: (e: CalendarInputElement) => void;
 }) => {
-  const handleCalendar = (date: DateProps) => {
+  const handleCalendar = (date: DateProps, weekNumber?: number) => {
     if (date instanceof Date) {
-      const weekNumber = getWeekNumber(date);
       const dayNumber = date.getDay();
 
       let startDay: number;
@@ -32,7 +30,12 @@ const CalendarComponent = ({
       setCalendarHandle({
         target: { name: 'year', value: date.getFullYear() },
       });
-      setCalendarHandle({ target: { name: 'weekNumber', value: weekNumber } });
+      setCalendarHandle({
+        target: {
+          name: 'weekNumber',
+          value: weekNumber || getWeekNumber(date),
+        },
+      });
       setCalendarHandle({
         target: {
           name: 'weekDayNumbers',
@@ -42,16 +45,11 @@ const CalendarComponent = ({
     }
   };
 
-  const handleWeekNumber = (weekNumber: number, date: Date) => {
-    setCalendarHandle({ target: { name: 'weekNumber', value: weekNumber } });
-    handleCalendar(date)
-  };
-
   return (
     <Calendar
       showNeighboringMonth
-      onClickWeekNumber={handleWeekNumber}
-      onChange={handleCalendar}
+      onClickWeekNumber={(weekNumber, date) => handleCalendar(date, weekNumber)}
+      onChange={(e) => handleCalendar(e)}
       locale='en-GB'
       showWeekNumbers
     />
