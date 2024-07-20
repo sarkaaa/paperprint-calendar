@@ -1,5 +1,5 @@
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import '../../../../node_modules/react-calendar/dist/Calendar.css';
 import '../../globals.css';
 import { getWeekNumber } from '../../../../node_modules/react-calendar/dist/cjs/shared/dates.js';
 import { CalendarInputElement } from '@/app/utils/types';
