@@ -9,8 +9,8 @@ type Props = {
   first: boolean;
   last: boolean;
   color: string;
-  newMonth?: boolean;
   theme: CalendarThemeTypes;
+  leapWeek?: string | null;
 };
 
 /**
@@ -25,17 +25,23 @@ const WeekdayCalendarCell = ({
   first,
   last,
   color,
-  newMonth,
   theme,
+  leapWeek,
 }: Props) => (
   <div
     key={title}
     className={`flex w-full flex-1 flex-col bg-white px-3 py-2 ${first && `border-l border-slate-300`} ${!last && `border-r border-slate-300`}`}
   >
+    <div className='flex'>
+      <span
+        className={`flex-1 text-right text-xxs font-semibold uppercase text-gray-300 ${theme === 'classic' ? libreBaskerville.className : raleway.className}`}
+      >
+        {leapWeek}
+      </span>
+    </div>
     <div
       className={`flex items-center justify-center border-b border-gray-200 pb-2`}
     >
-      <span>{newMonth && dayNumber === 1 && ''}</span>
       <span
         className={`${color} flex-1 text-xl font-extrabold ${theme === 'classic' ? libreBaskerville.className : raleway.className}`}
       >

@@ -4,8 +4,18 @@ import { CalendarProps, CalendarSetupProps } from '@/app/utils/types';
 import { libreBaskerville, raleway } from '@/app/utils/fonts';
 import WeekdayCalendarCell from './calendarCell';
 import { WEEKDAYS, MONTHS } from '../../data/constants';
+import isAscending from '@/app/helpers/isAscending';
 
 const CalendarDatesArray = Object.values(WEEKDAYS);
+
+/**
+ * This function checks if the selected week
+ * includes days (zero/negative values) from the previous month.
+ * Example: 29, 30, 31, 1, 2, 3, 4 -> -2, -1, 0, 1, 2, 3, 4
+ */
+const hasPreviousMonthWeekdays = (weekDayNumbers: number[]) => {
+  return weekDayNumbers?.some((weekDayNumber: number) => weekDayNumber <= 0);
+};
 
 /**
  * Returns the days in numbers of respective month.
@@ -36,9 +46,7 @@ const fillWeekdays = (calendar: CalendarProps, weekDays: Array<number>) => {
    * Check if there are any zero/negative values in the array (weekdays from the previous month).
    * Example: 29, 30, 31, 1, 2, 3, 4 -> -2, -1, 0, 1, 2, 3, 4
    */
-  if (
-    calendar.weekDayNumbers?.some((weekDayNumber: number) => weekDayNumber <= 0)
-  ) {
+  if (hasPreviousMonthWeekdays(calendar.weekDayNumbers)) {
     /**
      * Get the last day in number of the previous month for the selected week.
      * The logic for new year is also handled here.
@@ -103,6 +111,37 @@ const WeeklyCalendar = ({
     [] || defaultWeekDayNumbers()
   );
 
+  /* Checks if selected week is leap. */
+  const leapWeek = isAscending(weekDays);
+
+  /**
+   * Set month names for every calendar cell.
+   * Used when selected week includes days from the previous/next month.
+   */
+  const setCalendarMonth = (index: number) => {
+    let prevMonth = false;
+    let calMonth: number;
+
+    if (hasPreviousMonthWeekdays(calendar.weekDayNumbers)) {
+      prevMonth = true;
+    }
+
+    if (calendar.month === 0 && prevMonth) {
+      calMonth = 12;
+    } else if (calendar.month === 11 && !prevMonth) {
+      calMonth = -1;
+    } else {
+      calMonth = calendar.month;
+    }
+
+    const monthName =
+      weekDays[index] - weekDays[0] === index
+        ? MONTHS[prevMonth ? calMonth - 1 : calendar.month]
+        : MONTHS[prevMonth ? calendar.month : calMonth + 1];
+
+    return monthName;
+  };
+
   const renderCalendarCell = (day: string, index: number) => {
     return WeekdayCalendarCell({
       title: day,
@@ -112,7 +151,7 @@ const WeeklyCalendar = ({
       first: day === WEEKDAYS.Monday,
       last: index === CalendarDatesArray.length - 1,
       color: colorScheme({ color: calendarSetup.color, style: 'text' }),
-      newMonth: weekDays[index + 1] === 1,
+      leapWeek: !leapWeek ? setCalendarMonth(index) : null,
     });
   };
 
@@ -158,7 +197,7 @@ const WeeklyCalendar = ({
         )}
         <div className='flex flex-1 flex-col bg-white'>
           {CalendarDatesArray.slice(5).map((day, index) =>
-            renderCalendarCell(day, index)
+            renderCalendarCell(day, index + 5)
           )}
         </div>
       </div>
