@@ -1,4 +1,4 @@
-import { MONTHS } from "../data/constants";
+import { MONTHS } from '../data/constants';
 
 /**
  * Returns header icon for header component.
@@ -9,18 +9,18 @@ const HeaderIcon = () => {
   const month = date.getMonth();
   const day = date.getDate();
 
-  return <div className="shake-on-hover relative rounded-xl bg-slate-50 shadow-xl">
-    <div className="relative flex justify-center rounded-t-xl bg-red-700 px-10 py-2">
-      <span className="text-2xl font-semibold uppercase tracking-widest text-white">
-        {MONTHS[month]}
-      </span>
+  return (
+    <div className='shake-on-hover relative flex aspect-7/5 flex-col rounded-xl bg-slate-50 shadow-xl'>
+      <div className='relative flex justify-center rounded-t-xl bg-red-700 px-10 py-3'>
+        <span className='text-2xl font-semibold uppercase tracking-widest text-white'>
+          {MONTHS[month]}
+        </span>
+      </div>
+      <div className='relative flex flex-1 items-center justify-center px-10 py-6'>
+        <span className='color-slate-950 text-6xl font-extrabold'>{day}</span>
+      </div>
     </div>
-    <div className="relative flex justify-center px-10 py-6">
-      <span className="color-slate-950 text-6xl font-extrabold">
-        {day}
-      </span>
-    </div>
-  </div>
-}
+  );
+};
 
 export default HeaderIcon;

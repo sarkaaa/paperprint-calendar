@@ -44,9 +44,9 @@ const CalendarForm = () => {
   const [mount, setMount] = useState(false);
 
   // TMP
-  const handleInput = (e: React.ChangeEvent<Element>) => {
-    const fieldName = (e.target as HTMLInputElement).name;
-    const fieldValue = (e.target as HTMLInputElement).value;
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fieldName = (event.target as HTMLInputElement).name;
+    const fieldValue = (event.target as HTMLInputElement).value;
 
     setCalendar((prevState) => ({ ...prevState, [fieldName]: fieldValue }));
   };
@@ -79,8 +79,10 @@ const CalendarForm = () => {
             /* <CalendarFormField title="1. Choose structure" formItems={structureFileds} onClick={(e: Event) => handleInput(e)} calendarValueCheck={calendarSetup.type} /> */
           }
           <div className='flex-1 rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4'>
-            <h3 className='font-semibold'>1. Select week</h3>
-            <div className='mt-6'>
+            <h3 className='font-semibold' aria-labelledby='selectweek'>
+              1. Select week
+            </h3>
+            <div className='mt-6' id='selectweek'>
               <CalendarComponent setCalendarHandle={setCalendarHandle} />
             </div>
           </div>
@@ -88,9 +90,12 @@ const CalendarForm = () => {
             calendarSetup ? (
               <CalendarFormField
                 key={fields[0].name}
+                id={fields[0].name}
                 title={`${index + 2}. Choose ${fields[0].name}`}
                 formItems={fields}
-                onChange={(e: React.ChangeEvent<Element>) => handleInput(e)}
+                onChange={(e) =>
+                  handleInput(e as React.ChangeEvent<HTMLInputElement>)
+                }
                 calendarValueCheck={calendarSetup[fields[index].name]}
               />
             ) : (

@@ -1,10 +1,10 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { CANVAS_BACKGROUNDS } from '@/app/data/configurationFormData';
 import { CalendarProps, CalendarSetupProps } from '@/app/utils/types';
 import { libreBaskerville, raleway } from '@/app/utils/fonts';
+import isAscending from '@/app/helpers/isAscending';
 import WeekdayCalendarCell from './calendarCell';
 import { WEEKDAYS, MONTHS } from '../../data/constants';
-import isAscending from '@/app/helpers/isAscending';
 
 const CalendarDatesArray = Object.values(WEEKDAYS);
 
@@ -106,10 +106,7 @@ const WeeklyCalendar = ({
   calendar: CalendarProps;
   calendarSetup: CalendarSetupProps;
 }) => {
-  const weekDays: number[] = fillWeekdays(
-    calendar,
-    [] || defaultWeekDayNumbers()
-  );
+  const weekDays: number[] = fillWeekdays(calendar, defaultWeekDayNumbers());
 
   /* Checks if selected week is leap. */
   const leapWeek = isAscending(weekDays);
@@ -149,7 +146,6 @@ const WeeklyCalendar = ({
       bgType: calendarSetup.canvas,
       theme: calendarSetup.theme,
       first: day === WEEKDAYS.Monday,
-      last: index === CalendarDatesArray.length - 1,
       color: colorScheme({ color: calendarSetup.color, style: 'text' }),
       leapWeek: !leapWeek ? setCalendarMonth(index) : null,
     });
@@ -160,8 +156,11 @@ const WeeklyCalendar = ({
       <div className='flex items-end justify-between bg-white px-2 pb-8 pt-4'>
         <div>
           <span
-            className={classNames(
-              `mr-4 text-4xl font-semibold uppercase tracking-wider ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`,
+            className={clsx(
+              'text-4xl font-semibold uppercase tracking-wider',
+              calendarSetup.theme === 'classic'
+                ? libreBaskerville.className
+                : raleway.className,
               {
                 'text-black': calendarSetup.color === 'blackAndWhite',
                 'text-red-700': calendarSetup.color === 'red',
@@ -173,19 +172,35 @@ const WeeklyCalendar = ({
             {MONTHS[calendar.month]}
           </span>
           <span
-            className={`text-4xl font-semibold text-gray-400 ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}
+            className={clsx(
+              'text-4xl font-semibold text-gray-500',
+              calendarSetup.theme === 'classic'
+                ? libreBaskerville.className
+                : raleway.className
+            )}
           >
             {calendar.year}
           </span>
         </div>
         <div className='flex flex-col items-end'>
           <span
-            className={`text-3xl font-semibold ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className} ${colorScheme({ color: calendarSetup.color, style: 'text' })}`}
+            className={clsx(
+              'text-3xl font-semibold',
+              calendarSetup.theme === 'classic'
+                ? libreBaskerville.className
+                : raleway.className,
+              colorScheme({ color: calendarSetup.color, style: 'text' })
+            )}
           >
             {calendar.weekNumber}
           </span>
           <span
-            className={`text-xs font-light uppercase text-gray-400 ${calendarSetup.theme === 'classic' ? libreBaskerville.className : raleway.className}`}
+            className={clsx(
+              'text-xs font-light uppercase text-gray-500',
+              calendarSetup.theme === 'classic'
+                ? libreBaskerville.className
+                : raleway.className
+            )}
           >
             week number
           </span>
@@ -202,7 +217,10 @@ const WeeklyCalendar = ({
         </div>
       </div>
       <div
-        className={`h-36 w-full border-t bg-white p-4 ${CANVAS_BACKGROUNDS[calendarSetup.canvas]}`}
+        className={clsx(
+          'h-36 w-full border-t bg-white p-4',
+          CANVAS_BACKGROUNDS[calendarSetup.canvas]
+        )}
       ></div>
     </div>
   );

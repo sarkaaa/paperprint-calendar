@@ -22,6 +22,8 @@ src/.next/
 .DS_Store
 *.pem
 .vscode
+.yarn
+.pnp.*
 
 # debug
 npm-debug.log*

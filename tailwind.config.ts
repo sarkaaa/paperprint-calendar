@@ -24,6 +24,9 @@ const config: Config = {
       fontSize: {
         xxs: '0.625rem',
       },
+      aspectRatio: {
+        '7/5': '7 / 5',
+      },
     },
   },
   plugins: [],
