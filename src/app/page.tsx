@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Link } from "react-scroll";
-import CalendarForm from "./components/calendar/calendarForm";
+import CalendarForm from "./components/calendar/formComponents/calendarForm";
 import { angkor, inter } from "./utils/fonts";
 import HeaderIcon from "./components/headerIcon";
 import HeaderDescriptionItem from "./components/headerDescriptionItem";
