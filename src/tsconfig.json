@@ -23,7 +23,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/helpers/ascending.test.js"
+    "app/helpers/*.test.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -27,17 +27,6 @@ const daysInMonth = (month: number, year: number): number => {
   return new Date(year, month, 0).getDate();
 };
 
-/* Returns the week day numbers for the calendar. */
-const defaultWeekDayNumbers = () => {
-  const dateObject = new Date();
-  const date = dateObject.getDate();
-  const dayNumber = dateObject.getDay();
-
-  const startDay: number = dayNumber === 0 ? date - 6 : date - dayNumber + 1;
-
-  return Array.from({ length: 7 }, (_, i) => startDay + i);
-};
-
 /**
  * This function returns the weekdays for the calendar. content
  */
@@ -106,7 +95,7 @@ const WeeklyCalendar = ({
   calendar: CalendarProps;
   calendarSetup: CalendarSetupProps;
 }) => {
-  const weekDays: number[] = fillWeekdays(calendar, defaultWeekDayNumbers());
+  const weekDays: number[] = fillWeekdays(calendar, []);
 
   /* Checks if selected week is leap. */
   const leapWeek = isAscending(weekDays);

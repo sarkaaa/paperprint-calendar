@@ -1,10 +1,4 @@
-const isAscending = (arr: number[]) => {
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] > arr[i + 1]) {
-      return false;
-    }
-  }
-  return true;
-};
+const isAscending = (arr: number[]) =>
+  arr.every((value, index) => index === 0 || value >= arr[index - 1]);
 
 export default isAscending;
