@@ -7,9 +7,9 @@ yarn lint-staged || (
     echo "❌ Failed! Some errors or warning were found. ☠️ ❌";
     false;
 )
-echo `Running tests 🧪`;
+echo "Running tests 🧪";
 
-yarn jest || (
+yarn test || (
     echo "❌ Failed! Some tests are failing. ☠️ ❌";
     false;
 )
