@@ -25,10 +25,6 @@
   }
 }
 
-/* h1 {
-  @apply font-angkor;
-} */
-
 /* CSS */
 @keyframes shake {
   0% {
@@ -55,10 +51,7 @@
 
 /* BG types */
 .dots {
-  /* @apply w-full; */
-  /* width: 100%; */
   background-image: radial-gradient(#d9d9d9 1px, transparent 0);
-  /* background-size: 15px 15px; */
 }
 
 .lines {
@@ -67,7 +60,6 @@
     #d9d9d9 1px,
     #FFF 1px
   );
-  /* background-size: 25px 25px; */
 }
 
 /* React calendar */
