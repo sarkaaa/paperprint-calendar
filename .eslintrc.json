@@ -27,6 +27,20 @@
     "no-nested-ternary": ["error"],
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
     "eol-last": ["error"],
-    "no-trailing-spaces": ["error"]
+    "no-trailing-spaces": ["error"],
+    "no-irregular-whitespace": ["error"],
+    "@typescript-eslint/member-delimiter-style": [
+      "warn",
+      {
+        "multiline": {
+          "delimiter": "semi",
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "semi",
+          "requireLast": true
+        }
+      }
+    ]
   }
 }
