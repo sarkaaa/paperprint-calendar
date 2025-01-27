@@ -106,10 +106,7 @@ const WeeklyCalendar = ({
   calendar: CalendarProps;
   calendarSetup: CalendarSetupProps;
 }) => {
-  const weekDays: number[] = fillWeekdays(
-    calendar,
-    [] || defaultWeekDayNumbers()
-  );
+  const weekDays: number[] = fillWeekdays(calendar, defaultWeekDayNumbers());
 
   /* Checks if selected week is leap. */
   const leapWeek = isAscending(weekDays);
@@ -176,7 +173,7 @@ const WeeklyCalendar = ({
           </span>
           <span
             className={clsx(
-              'text-4xl font-semibold text-gray-400',
+              'text-4xl font-semibold text-gray-500',
               calendarSetup.theme === 'classic'
                 ? libreBaskerville.className
                 : raleway.className
@@ -199,7 +196,7 @@ const WeeklyCalendar = ({
           </span>
           <span
             className={clsx(
-              'text-xs font-light uppercase text-gray-400',
+              'text-xs font-light uppercase text-gray-500',
               calendarSetup.theme === 'classic'
                 ? libreBaskerville.className
                 : raleway.className
