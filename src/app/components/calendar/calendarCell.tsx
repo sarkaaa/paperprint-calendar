@@ -37,7 +37,7 @@ const WeekdayCalendarCell = ({
     <div className='flex'>
       <span
         className={clsx(
-          'flex-1 text-xs font-semibold uppercase text-gray-400',
+          'flex-1 text-xs font-semibold uppercase text-gray-500',
           theme === 'classic' ? libreBaskerville.className : raleway.className
         )}
       >
@@ -58,7 +58,7 @@ const WeekdayCalendarCell = ({
       </span>
       <span
         className={clsx(
-          'flex-1 text-right text-xs font-semibold uppercase text-gray-400',
+          'flex-1 text-right text-xs font-semibold uppercase text-gray-500',
           theme === 'classic' ? libreBaskerville.className : raleway.className
         )}
       >
