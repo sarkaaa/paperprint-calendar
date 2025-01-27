@@ -1,20 +1,23 @@
 import React from 'react';
-import { libreBaskerville, raleway } from "@/app/utils/fonts"
+import { libreBaskerville, raleway } from '@/app/utils/fonts';
 
-type CanvasType = 'canvasExampleLines' | 'canvasExampleDots' | 'canvasExampleEmpty';
+type CanvasType =
+  | 'canvasExampleLines'
+  | 'canvasExampleDots'
+  | 'canvasExampleEmpty';
 
 type CalendarFormFieldProps = {
-  title: string,
+  title: string;
   formItems: Array<{
-    title: string,
-    id: string,
-    name: string,
-    value: string
-    example?: string & CanvasType
-  }>,
-  onChange: (e: React.ChangeEvent) => void,
-  calendarValueCheck: string
-}
+    title: string;
+    id: string;
+    name: string;
+    value: string;
+    example?: string & CanvasType;
+  }>;
+  onChange: (e: React.ChangeEvent) => void;
+  calendarValueCheck: string;
+};
 
 /**
  * This function returns the font example based on the type.
@@ -23,11 +26,11 @@ type CalendarFormFieldProps = {
  */
 const fontExample = (type: string) => {
   if (type === 'themeExampleClassic') {
-    return libreBaskerville.className
+    return libreBaskerville.className;
   } else if (type === 'themeExampleMinimalism') {
-    return raleway.className
+    return raleway.className;
   }
-}
+};
 
 /**
  * This function returns the canvas example based on the type.

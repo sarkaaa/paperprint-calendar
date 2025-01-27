@@ -1,13 +1,12 @@
+'use client';
+import React from 'react';
 import { Link, scroller } from 'react-scroll';
 import { CalendarEdit } from 'iconsax-react';
 
-"use client";
-import React from "react";
-import { Link } from "react-scroll";
-import CalendarForm from "./components/calendar/formComponents/calendarForm";
-import { angkor, inter } from "./utils/fonts";
-import HeaderIcon from "./components/headerIcon";
-import HeaderDescriptionItem from "./components/headerDescriptionItem";
+import CalendarForm from './components/calendar/formComponents/calendarForm';
+import { angkor, inter } from './utils/fonts';
+import HeaderIcon from './components/headerIcon';
+import HeaderDescriptionItem from './components/headerDescriptionItem';
 
 const DESCRIPTION_VALUES = [
   // {
@@ -15,21 +14,21 @@ const DESCRIPTION_VALUES = [
   //   description: 'Select which type of calendar you want to create. You can choose between a weekly or a monthly calendar.'
   // },
   {
-    title: "Set your your calendar style",
+    title: 'Set your your calendar style',
     description:
-      "Choose between a variety of styles for your calendar. You can select your favourite theme, and you can also choose its color palette.",
+      'Choose between a variety of styles for your calendar. You can select your favourite theme, and you can also choose its color palette.',
   },
   {
-    title: "Download and print",
+    title: 'Download and print',
     description:
-      "Is your calendar ready? Download it and print it. Feel free to share the website with your friends. Supported browsers are Chrome and Opera.",
+      'Is your calendar ready? Download it and print it. Feel free to share the website with your friends. Supported browsers are Chrome and Opera.',
   },
 ];
 
 const Home = () => (
-  <main className="flex min-h-screen flex-col items-center justify-between">
-    <section className="w-full bg-gradient-to-tr from-indigo-50 to-indigo-200 p-6 py-10 lg:p-24">
-      <div className="mx-auto w-auto max-w-screen-2xl">
+  <main className='flex min-h-screen flex-col items-center justify-between'>
+    <section className='w-full bg-gradient-to-tr from-indigo-50 to-indigo-200 p-6 py-10 lg:p-24'>
+      <div className='mx-auto w-auto max-w-screen-2xl'>
         <div className='flex justify-center' aria-hidden='true'>
           <HeaderIcon />
         </div>
@@ -38,7 +37,7 @@ const Home = () => (
         >
           Paperprint calendar
         </h1>
-        <div className="mx-auto my-8">
+        <div className='mx-auto my-8'>
           <p
             className={`${inter.className} mb-6 mt-8 text-center text-xl font-bold text-gray-600 md:text-2xl`}
           >
@@ -47,9 +46,9 @@ const Home = () => (
         </div>
         <div className='my-8 flex justify-center gap-2'>
           <a
-            href="https://github.com/sarkaaa/paperprint-calendar"
-            className="color-slate-950 inline-block rounded-md bg-slate-300 px-4 py-2 text-center font-semibold transition-all hover:bg-slate-400 focus:bg-slate-400"
-            target="_blank"
+            href='https://github.com/sarkaaa/paperprint-calendar'
+            className='color-slate-950 inline-block rounded-md bg-slate-300 px-4 py-2 text-center font-semibold transition-all hover:bg-slate-400 focus:bg-slate-400'
+            target='_blank'
           >
             Github.com
           </a>
@@ -80,7 +79,7 @@ const Home = () => (
         </div>
         <div>
           <div>
-            <h2 className="color-slate-950 mb-6 mt-12 text-center text-3xl">
+            <h2 className='color-slate-950 mb-6 mt-12 text-center text-3xl'>
               How does it work?
             </h2>
           </div>
