@@ -1,5 +1,5 @@
 import React from 'react';
-import { libreBaskerville, raleway } from "@/app/utils/fonts"
+import { libreBaskerville, raleway } from '@/app/utils/fonts';
 
 type CanvasType =
   | 'canvasExampleLines'
