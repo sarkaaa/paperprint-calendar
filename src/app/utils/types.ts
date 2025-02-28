@@ -18,5 +18,5 @@ export type CalendarSetupProps = {
 };
 
 export type CalendarInputElement = {
-  target: { name: string; value: number | number[] };
+  target: { name: string; value: number | number[]; };
 };
