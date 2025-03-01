@@ -44,7 +44,7 @@ const CalendarForm = () => {
   const [mount, setMount] = useState(false);
 
   // TMP
-  const handleInput = (e: React.ChangeEvent<Element>) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldName = (e.target as HTMLInputElement).name;
     const fieldValue = (e.target as HTMLInputElement).value;
 
@@ -73,12 +73,12 @@ const CalendarForm = () => {
             Configure your calendar
           </h2>
         </div>
-        <div className='mt-6 flex flex-wrap gap-6 md:mt-16'>
+        <div className='mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-9'>
           {
             // TODO: Set weekly/monthly calendar
             /* <CalendarFormField title="1. Choose structure" formItems={structureFileds} onClick={(e: Event) => handleInput(e)} calendarValueCheck={calendarSetup.type} /> */
           }
-          <div className='flex-1 rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4'>
+          <div className='rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4 xl:col-span-3'>
             <h3 className='font-semibold'>1. Select week</h3>
             <div className='mt-6'>
               <CalendarComponent setCalendarHandle={setCalendarHandle} />
@@ -90,7 +90,9 @@ const CalendarForm = () => {
                 key={fields[0].name}
                 title={`${index + 2}. Choose ${fields[0].name}`}
                 formItems={fields}
-                onChange={(e: React.ChangeEvent<Element>) => handleInput(e)}
+                onChange={(e) =>
+                  handleInput(e as React.ChangeEvent<HTMLInputElement>)
+                }
                 calendarValueCheck={calendarSetup[fields[index].name]}
               />
             ) : (
@@ -101,8 +103,7 @@ const CalendarForm = () => {
           )}
         </div>
       </div>
-      <div>
-        <h2 className='my-8 text-center text-3xl font-bold'>Your calendar</h2>
+      <div className='mt-12'>
         {mount ? (
           <PrintCalendar
             calendar={calendarDates}
