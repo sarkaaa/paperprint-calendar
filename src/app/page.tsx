@@ -1,3 +1,4 @@
+import { Link, scroller } from 'react-scroll';
 "use client";
 import React from "react";
 import { Link } from "react-scroll";
@@ -27,7 +28,7 @@ const Home = () => (
   <main className="flex min-h-screen flex-col items-center justify-between">
     <section className="w-full bg-gradient-to-tr from-indigo-50 to-indigo-200 p-6 py-10 lg:p-24">
       <div className="mx-auto w-auto max-w-screen-2xl">
-        <div className="flex justify-center">
+        <div className='flex justify-center' aria-hidden='true'>
           <HeaderIcon />
         </div>
         <h1
@@ -51,13 +52,23 @@ const Home = () => (
             Github.com
           </a>
           <Link
-            activeClass="active"
-            to="canvas"
+            activeClass='active'
+            to='workspace'
             spy={true}
             smooth={true}
             offset={50}
             duration={1500}
             isDynamic={true}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                scroller.scrollTo('workspace', {
+                  duration: 1500,
+                  delay: 100,
+                  smooth: true,
+                });
+              }
+            }}
           >
             <span className="inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-center font-semibold text-white transition-all hover:bg-indigo-800 focus:bg-indigo-800">
               Create your calendar
@@ -83,8 +94,11 @@ const Home = () => (
         </div>
       </div>
     </section>
-    <section className="w-full bg-white p-6 py-10 lg:p-24 lg:pb-8" id="canvas">
-      <div className="mx-auto w-auto max-w-screen-2xl">
+    <section
+      className='w-full bg-white p-6 py-10 lg:p-24 lg:pb-8'
+      id='workspace'
+    >
+      <div className='mx-auto w-auto max-w-screen-2xl'>
         <CalendarForm />
       </div>
     </section>

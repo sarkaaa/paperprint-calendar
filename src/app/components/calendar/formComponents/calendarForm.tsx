@@ -44,7 +44,7 @@ const CalendarForm = () => {
   const [mount, setMount] = useState(false);
 
   // TMP
-  const handleInput = (e: React.ChangeEvent<Element>) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fieldName = (e.target as HTMLInputElement).name;
     const fieldValue = (e.target as HTMLInputElement).value;
 
@@ -90,7 +90,9 @@ const CalendarForm = () => {
                 key={fields[0].name}
                 title={`${index + 2}. Choose ${fields[0].name}`}
                 formItems={fields}
-                onChange={(e: React.ChangeEvent<Element>) => handleInput(e)}
+                onChange={(e) =>
+                  handleInput(e as React.ChangeEvent<HTMLInputElement>)
+                }
                 calendarValueCheck={calendarSetup[fields[index].name]}
               />
             ) : (
