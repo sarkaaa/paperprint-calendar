@@ -1,10 +1,11 @@
 'use client';
 import React from 'react';
 import { Link, scroller } from 'react-scroll';
-import CalendarForm from "./components/calendar/formComponents/calendarForm";
-import { angkor, inter } from "./utils/fonts";
-import HeaderIcon from "./components/headerIcon";
-import HeaderDescriptionItem from "./components/headerDescriptionItem";
+import { CalendarEdit } from 'iconsax-react';
+import CalendarForm from './components/calendar/formComponents/calendarForm';
+import { angkor, inter } from './utils/fonts';
+import HeaderIcon from './components/headerIcon';
+import HeaderDescriptionItem from './components/headerDescriptionItem';
 
 const DESCRIPTION_VALUES = [
   // {
@@ -42,10 +43,10 @@ const Home = () => (
             Design and print your custom paper calendar.
           </p>
         </div>
-        <div className="relative my-8 flex justify-center gap-2">
+        <div className='my-8 flex justify-center gap-2'>
           <a
             href='https://github.com/sarkaaa/paperprint-calendar'
-            className='color-slate-950 inline-block rounded-md bg-slate-300 px-4 py-2 text-center font-semibold transition-all hover:bg-slate-400 focus:bg-slate-400'
+            className='color-slate-950 flex items-center rounded-md bg-slate-300 px-4 py-2 text-center font-semibold transition-all hover:bg-slate-400 focus:bg-slate-400'
             target='_blank'
           >
             Github.com
@@ -69,8 +70,9 @@ const Home = () => (
               }
             }}
           >
-            <span className="inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-center font-semibold text-white transition-all hover:bg-indigo-800 focus:bg-indigo-800">
+            <span className='flex cursor-pointer items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-center font-semibold text-white transition-all hover:bg-indigo-800 focus:bg-indigo-800'>
               Create your calendar
+              <CalendarEdit size='28' color='#FFF' />
             </span>
           </Link>
         </div>
@@ -80,7 +82,7 @@ const Home = () => (
               How does it work?
             </h2>
           </div>
-          <div className="px-4 md:px-0 mx-auto flex w-full md:w-2/3 flex-col flex-wrap gap-8 md:flex-row md:gap-12">
+          <div className='mx-auto flex w-full flex-col flex-wrap gap-8 px-4 md:w-2/3 md:flex-row md:gap-12 md:px-0'>
             {DESCRIPTION_VALUES.map(({ title, description }, index) => (
               <HeaderDescriptionItem
                 key={index}

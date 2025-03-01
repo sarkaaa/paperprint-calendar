@@ -67,7 +67,7 @@ const CalendarFormField = ({
   };
 
   return (
-    <div className='flex-1 rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4'>
+    <div className='rounded-md bg-gradient-to-tr from-indigo-50 to-indigo-100 p-4 xl:col-span-2'>
       <h3 className='font-semibold'>{title}</h3>
       <div className='my-4 rounded-md bg-indigo-50 p-4'>
         {formItems.map((item) => (

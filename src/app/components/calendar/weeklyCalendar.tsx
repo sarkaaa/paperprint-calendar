@@ -154,7 +154,7 @@ const WeeklyCalendar = ({
   return (
     <div className='relative flex size-auto min-h-svh flex-col justify-stretch overflow-x-scroll bg-white p-4'>
       <div className='flex items-end justify-between bg-white px-2 pb-8 pt-4'>
-        <div>
+        <div className='flex gap-2'>
           <span
             className={clsx(
               'text-4xl font-semibold uppercase tracking-wider',
