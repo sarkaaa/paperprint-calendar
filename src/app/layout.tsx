@@ -4,7 +4,7 @@ import '@/app/globals.css';
 
 export const metadata: Metadata = {
   title: 'Paperprint calendear',
-  description: 'Create your own paper calendar!',
+  description: 'Create your own calendar for printing!',
   authors: [{ name: 'Šárka Chwastková', url: 'https://pandacode.cz' }],
   keywords: [
     'calendar',
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     'download',
     'share',
   ],
+  icons: { icon: './favicon.ico' },
 };
 
 export default function RootLayout({
