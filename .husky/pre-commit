@@ -7,5 +7,11 @@ yarn lint-staged || (
     echo "❌ Failed! Some errors or warning were found. ☠️ ❌";
     false;
 )
+echo "Running tests 🧪";
+
+yarn test || (
+    echo "❌ Failed! Some tests are failing. ☠️ ❌";
+    false;
+)
 
 echo "Everything is 🆗. I am committing your changes. ✅";
