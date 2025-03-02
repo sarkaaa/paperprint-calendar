@@ -2,9 +2,16 @@ import type { Metadata } from 'next';
 import 'react-calendar/dist/Calendar.css';
 import '@/app/globals.css';
 
-export const metadata: Metadata = {
-  title: 'Paperprint calendear',
+const BASE_URL = 'https://paperprint-calendar.vercel.app/';
+
+const mainInfo = {
+  title: 'Paperprint calendar',
   description: 'Create your own calendar for printing!',
+};
+
+export const metadata: Metadata = {
+  ...mainInfo,
+  metadataBase: new URL(BASE_URL),
   authors: [{ name: 'Šárka Chwastková', url: 'https://pandacode.cz' }],
   keywords: [
     'calendar',
@@ -17,6 +24,26 @@ export const metadata: Metadata = {
     'share',
   ],
   icons: { icon: './favicon.ico' },
+  openGraph: {
+    ...mainInfo,
+    images: [
+      {
+        url: './thumbnail.png',
+        secureUrl: './thumbnail.png',
+        width: 1200,
+        height: 630,
+        alt: 'Preview image for Paperprint calendar',
+      },
+    ],
+    type: 'website',
+    siteName: 'Paperprint calendar',
+  },
+  twitter: {
+    ...mainInfo,
+    card: 'summary_large_image',
+    creator: '@sarkachwastkova',
+    images: ['./thumbnail.png'],
+  },
 };
 
 export default function RootLayout({
