@@ -5,8 +5,9 @@ import '@/app/globals.css';
 const BASE_URL = 'https://paperprint-calendar.vercel.app/';
 
 const mainInfo = {
-  title: 'Paperprint calendar',
-  description: 'Create your own calendar for printing!',
+  title: 'PaperPrint calendar - printable weekly calendar',
+  description:
+    'Create your own printable weekly calendar with a minimalist design. Choose a layout and download a PDF for easy printing.',
 };
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
     ],
     type: 'website',
     siteName: 'Paperprint calendar',
+    url: BASE_URL,
   },
   twitter: {
     ...mainInfo,
