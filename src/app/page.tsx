@@ -20,7 +20,7 @@ const DESCRIPTION_VALUES = [
   {
     title: 'Download and print',
     description:
-      'Is your calendar ready? Download it and print it. Feel free to share the website with your friends. Supported browsers are Chrome and Opera.',
+      'Is your calendar ready? Download it and print it. Feel free to share the website with your friends. Works best with Chrome and Opera.',
   },
 ];
 

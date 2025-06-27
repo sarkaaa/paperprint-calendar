@@ -79,6 +79,7 @@ const colorScheme = ({
   color: 'blackAndWhite' | 'red' | 'blue' | 'green';
   style: 'text' | 'border';
 }) => {
+  console.log('color: ', color);
   return color === 'blackAndWhite' ? 'text-black' : 'text-' + color + '-700';
 };
 
@@ -142,7 +143,7 @@ const WeeklyCalendar = ({
 
   return (
     <div className='relative flex size-auto min-h-svh flex-col justify-stretch overflow-x-scroll bg-white p-4'>
-      <div className='flex items-end justify-between bg-white px-2 pb-8 pt-4'>
+      <div className='flex min-w-[900px] items-end justify-between bg-white px-2 pb-8 pt-4'>
         <div className='flex gap-2'>
           <span
             className={clsx(
@@ -185,7 +186,7 @@ const WeeklyCalendar = ({
           </span>
           <span
             className={clsx(
-              'text-xs font-light uppercase text-gray-500',
+              'text-right text-xs font-light uppercase text-gray-500',
               calendarSetup.theme === 'classic'
                 ? libreBaskerville.className
                 : raleway.className
@@ -207,7 +208,7 @@ const WeeklyCalendar = ({
       </div>
       <div
         className={clsx(
-          'h-36 w-full border-t bg-white p-4',
+          'h-36 w-full min-w-[900px] border-t bg-white p-4',
           CANVAS_BACKGROUNDS[calendarSetup.canvas]
         )}
       ></div>
