@@ -30,7 +30,7 @@ const WeekdayCalendarCell = ({
   <div
     key={title}
     className={clsx(
-      'flex w-full flex-1 flex-col border-r border-slate-300 bg-white px-3 py-2',
+      'flex w-full min-w-[150px] flex-1 flex-col border-r border-slate-300 bg-white px-3 py-2',
       first && 'border-l'
     )}
   >
